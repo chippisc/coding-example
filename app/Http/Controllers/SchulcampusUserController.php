@@ -24,6 +24,7 @@ class SchulcampusUserController extends Controller
             response()->json(
                 SchulcampusUserResource::collection(
                     SchulcampusUser::query()
+                        ->select('id', 'username', 'given_name', 'family_name')
                         ->search($search)
                         ->limit(20)
                         ->get()

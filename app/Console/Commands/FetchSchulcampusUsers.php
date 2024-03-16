@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Services\SynchronizeUsersService;
 use Illuminate\Console\Command;
 
-class FetchUsers extends Command
+class FetchSchulcampusUsers extends Command
 {
     /**
      * The name and signature of the console command.

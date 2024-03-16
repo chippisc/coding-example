@@ -1,8 +1,5 @@
 <template>
-    <div
-        class="border border-gray-300 rounded-md py-1.5 relative"
-        v-on:click="console.log(users)"
-    >
+    <div class="border border-gray-300 rounded-md py-1.5 relative">
         <input
             placeholder="Tippen, um Nutzer zu suchen"
             name="search"

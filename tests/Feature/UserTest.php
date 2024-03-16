@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\SchulcampusUserController;
-use App\Http\Resources\SchulcampusUserResource;
 use App\Models\SchulcampusUser;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -42,8 +40,7 @@ class UserTest extends TestCase
 
     public function test_fetch_users_returns_both_users_with_empty_search(): void
     {
-        SchulcampusUser::factory(2)->sequence(fn () =>
-            ['given_name' => 'Max', 'family_name' => 'Mustermann'],
+        SchulcampusUser::factory(2)->sequence(fn () => ['given_name' => 'Max', 'family_name' => 'Mustermann'],
             ['given_name' => 'Frank', 'family_name' => 'Schmidt'],
         )->create();
         $response = $this->getJson(route('users.fetch'));
@@ -54,8 +51,7 @@ class UserTest extends TestCase
 
     public function test_fetch_users_filters_for_search(): void
     {
-        SchulcampusUser::factory(2)->sequence(fn () =>
-            ['username' => 'max.mustermann', 'given_name' => 'Max', 'family_name' => 'Mustermann'],
+        SchulcampusUser::factory(2)->sequence(fn () => ['username' => 'max.mustermann', 'given_name' => 'Max', 'family_name' => 'Mustermann'],
             ['username' => 'frank.schmidt', 'given_name' => 'Frank', 'family_name' => 'Schmidt'],
         )->create();
         $response = $this->getJson(route('users.fetch', ['search' => 'max']), ['search' => 'max']);
