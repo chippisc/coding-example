@@ -2,10 +2,13 @@
 
 namespace App\Services;
 
-use App\Models\SchulcampusUser;
-use Carbon\Exceptions\InvalidTypeException;
 use Illuminate\Support\Arr;
+use App\Models\SchulcampusUser;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
+use Carbon\Exceptions\InvalidTypeException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\Concerns\ValidatesAttributes;
 
 class SynchronizeUsersService
 {
@@ -13,7 +16,27 @@ class SynchronizeUsersService
     {
         $token = $this->requestToken();
         $users = $this->fetchUsers($token);
+        $this->validate($users);
         $this->synchronizeDatabase($users);
+    }
+
+    /**
+     * @param  array<string[]>  $users
+     */
+    private function validate($users): void
+    {
+        // Use default laravel validation. For huge datasets a custom validator would need to be implemented for performance reasons
+        Validator::make($users, [
+            '*' => [
+                'required',
+                'array',
+                'required_array_keys:username,givenName,familyName,role',
+            ],
+            '*.username' => ['string', 'max:255'],
+            '*.givenName' => ['string', 'max:255'],
+            '*.familyName' => ['string', 'max:255'],
+            '*.role' => ['string', 'max:255', 'in:student,teacher'],
+        ])->validate();
     }
 
     /**

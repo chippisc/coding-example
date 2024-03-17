@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Services\SynchronizeUsersService;
 use Illuminate\Console\Command;
+use Illuminate\Validation\ValidationException;
 
 class FetchSchulcampusUsers extends Command
 {
@@ -27,6 +28,11 @@ class FetchSchulcampusUsers extends Command
     public function handle(): void
     {
         $syncronizeUsersService = new SynchronizeUsersService();
-        $syncronizeUsersService->fromApi();
+        try {
+            $syncronizeUsersService->fromApi();
+        } catch (ValidationException $e) {
+            // Implement error handling here
+            throw($e);
+        }
     }
 }

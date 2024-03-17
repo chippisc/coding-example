@@ -69,7 +69,10 @@ export default {
                         }
                     })
                     .catch((error) => {
-                        this.searchError = error.response.data.message;
+                        let status = error.response.status ?? 500;
+                        status === 422 ?
+                            this.searchError = error.response.data.message :
+                            this.searchError = 'Die Anfrage konnte nicht verarbeitet werden, bitte probieren Sie es später erneut.';
                     });
             }
         },
