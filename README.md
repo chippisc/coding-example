@@ -48,6 +48,7 @@ Die Detailseite eines Benutzers wurde hauptsächlich eingepflegt, um die Ergebni
 ### Genutzte Pakete
 
 Um schneller zum Ziel zu kommen, wurden einige Pakete genutzt. Dies sind:
+
 -   [lodash](https://github.com/lodash/lodash)
 -   [axios](https://github.com/axios/axios)
 -   [ziggy](https://github.com/tighten/ziggy) (Aufgrund meiner fehlenden Erfahrung mit vue.js habe ich versucht, das Routing simpel zu halten. Dieses Paket bietet eine Möglichkeit, von vue.js auf die benannten Routen aus Laravel zuzugreifen)
@@ -63,11 +64,13 @@ Um die Nutzer zu synchronisieren, wurde ein Service `SynchronizeUsersService` er
 Stattdessen wurde versucht, jeden Abschnitt der Synchronisation in eine eigene Methode zu stecken und per `fromApi` als Handler aufzurufen.
 
 ## Projektvorgehen
+
 Zu Beginn des Projektes wurde die Anwendung in verschiedene Teile aufgeteilt:
-- Die Datenbank und Modelstruktur
-- Der Controller sowie das Frontend, um Nutzer anzeigen zu lassen
-- Ein Kommmando, das Daten aus der API importiert und in die projekteigene Datenbank schreibt
-Begonnen wurde mit dem Frontend, besonders dem vue.js Teil, da hier aufgrund fehlender Erfahrung das größte Fehlerpotential bestand.
+
+-   Die Datenbank und Modelstruktur
+-   Der Controller sowie das Frontend, um Nutzer anzeigen zu lassen
+-   Ein Kommmando, das Daten aus der API importiert und in die projekteigene Datenbank schreibt
+    Begonnen wurde mit dem Frontend, besonders dem vue.js Teil, da hier aufgrund fehlender Erfahrung das größte Fehlerpotential bestand.
 
 Im zweiten Schritt wurde eine Tabelle auf der DB für die Nutzer erstellt und per Seeder mit Testdaten gefüllt. Dies ermöglichte dann die Nutzung aus dem Controller, um bei der Nutzersuche Ergebnisse an das Frontend zurückzugeben.
 
@@ -78,4 +81,5 @@ Abschließend wurden kleinere Optimierungen vorgenommen und das Projekt ein weni
 Aufgrund des kleinen Projektsumfangs wurde auf detaillierte Planung wie ER-Diagramme verzichtet.
 
 ## Weitere Schritte
+
 Nächste Schritte in einem echten Projekt wären Punkte wie Rate Limiting, ein Schedule für das Importieren der Nutzer, sowie sinnvolles Errorhandling beim Import der Daten.

@@ -26,7 +26,7 @@ class SchulcampusUserController extends Controller
                     SchulcampusUser::query()
                         ->select('id', 'username', 'given_name', 'family_name')
                         ->search($search)
-                        ->limit(20)
+                        ->limit(8)
                         ->get()
                 ),
                 200

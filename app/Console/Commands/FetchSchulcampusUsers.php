@@ -32,7 +32,7 @@ class FetchSchulcampusUsers extends Command
             $syncronizeUsersService->fromApi();
         } catch (ValidationException $e) {
             // Implement error handling here
-            throw($e);
+            throw ($e);
         }
     }
 }

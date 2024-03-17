@@ -2,13 +2,11 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Arr;
 use App\Models\SchulcampusUser;
+use Carbon\Exceptions\InvalidTypeException;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
-use Carbon\Exceptions\InvalidTypeException;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Validation\Concerns\ValidatesAttributes;
 
 class SynchronizeUsersService
 {
