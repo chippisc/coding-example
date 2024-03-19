@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\SchulcampusUser;
 use Carbon\Exceptions\InvalidTypeException;
+use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
@@ -74,7 +75,7 @@ class SynchronizeUsersService
             [
                 'access_token' => $token,
             ]
-        );
+        )->throwUnlessStatus(Response::HTTP_OK);
 
         $users = (array) $response->json();
 
@@ -96,7 +97,8 @@ class SynchronizeUsersService
                 'client_secret' => config('services.schulcampus_api.client_secret'),
                 'grant_type' => 'client_credentials',
             ]
-        );
+        )->throwUnlessStatus(Response::HTTP_OK);
+
         $token = is_array($response->json()) && array_key_exists('access_token', $response->json()) ? $response->json()['access_token'] : throw new \Exception('Token could not be fetched from schulcampus api');
 
         return is_string($token) ? $token : throw new \Exception('Token could not be fetched from schulcampus api');
