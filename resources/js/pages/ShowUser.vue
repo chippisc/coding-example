@@ -9,8 +9,8 @@
             <div v-text="user.username"></div>
             <hr class="col-span-2" />
         </div>
-        <router-link to="/" class="text-sky-300 font-bold"
-            >Zurück zur Suche</router-link
+        <a class="text-sky-300 font-bold cursor-pointer" @click="goBack()"
+            >Zurück</a
         >
 
         <div
@@ -24,6 +24,7 @@
 <script>
 import axios from "axios";
 import { route } from "ziggy-js";
+import router from "../router";
 
 export default {
     props: {
@@ -42,6 +43,9 @@ export default {
         this.getUser();
     },
     methods: {
+        goBack() {
+            router.go(-1);
+        },
         async getUser() {
             const user = await axios
                 .get(route("users.show", [this.userId]), {
