@@ -74,14 +74,7 @@ class SynchronizeUsersService
             $url,
             [
                 'access_token' => $token,
-            ],
-            [
-                'fields' => [
-                    'username',
-                    'given_name',
-                    'family_name',
-                    'role',
-                ],
+                'fields' => 'username,givenName,familyName,role',
             ]
         )->throwUnlessStatus(Response::HTTP_OK);
 

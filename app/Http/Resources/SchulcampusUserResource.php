@@ -9,6 +9,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  * @property ?int $id
  * @property ?string $given_name
  * @property ?string $family_name
+ * @property ?string $username
  */
 class SchulcampusUserResource extends JsonResource
 {
@@ -22,6 +23,7 @@ class SchulcampusUserResource extends JsonResource
         return [
             'id' => $this->id,
             'full_name' => $this->given_name.' '.$this->family_name,
+            'username' => $this->username,
         ];
     }
 }

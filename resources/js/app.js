@@ -1,10 +1,12 @@
 import "./bootstrap";
 import { createApp } from "vue";
-import Users from "../components/Users.vue";
-import { ZiggyVue } from "ziggy-js";
+import App from "./App.vue";
+import router from "./router";
+import Heading from "./components/Heading.vue";
+import MainContent from "./components/MainContent.vue";
 
-const app = createApp();
+const app = createApp(App);
 
-app.component("users", Users);
-app.use(ZiggyVue);
-app.mount("#app");
+app.component("Heading", Heading);
+app.component("MainContent", MainContent);
+app.use(router).mount("#app");

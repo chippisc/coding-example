@@ -23,6 +23,8 @@ class SearchSchulcampusUsersRequest extends FormRequest
     {
         return [
             'search' => ['nullable', 'string', 'max:255'],
+            'amount' => ['nullable', 'int', 'max:100'],
+            'offset' => ['nullable', 'int', 'min:0'],
         ];
     }
 }

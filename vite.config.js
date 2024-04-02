@@ -17,6 +17,7 @@ export default defineConfig({
             "ziggy-js": path.resolve(
                 "vendor/tightenco/ziggy/dist/index.esm.js",
             ),
+            icons: path.resolve(__dirname, "node_modules/vue-ionicons/dist"),
         },
     },
 });

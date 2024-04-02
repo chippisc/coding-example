@@ -1,3 +1,9 @@
+@import "../../node_modules/vue-ionicons/ionicons.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ion__svg {
+    @apply fill-inherit;
+}

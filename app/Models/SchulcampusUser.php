@@ -31,10 +31,12 @@ class SchulcampusUser extends Model
     {
         $terms = explode(' ', $search);
         foreach ($terms as $term) {
-            $query
-                ->where('username', 'LIKE', "%{$term}%")
-                ->orWhere('given_name', 'LIKE', "%{$term}%")
-                ->orWhere('family_name', 'LIKE', "%{$term}%");
+            $query->where(
+                fn (Builder $query) => $query
+                    ->where('username', 'LIKE', "%{$term}%")
+                    ->orWhere('given_name', 'LIKE', "%{$term}%")
+                    ->orWhere('family_name', 'LIKE', "%{$term}%")
+            );
         }
     }
 }
